@@ -3,10 +3,10 @@ import { useContext } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import LazyLoad from 'react-lazyload';
 import { HistoryContext } from "../contexts/historyContext";
 import { DiscussionEmbed } from "disqus-react";
 import NotFoundPages from "../components/notFoundPages";
+import LazyLoad from 'react-lazyload';
 
 const ChapterViewer = ({ chapter, slug }) => {
     const id = chapter.id;
@@ -21,7 +21,6 @@ const ChapterViewer = ({ chapter, slug }) => {
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     var date_time = date+' '+time;
-    
     const { dispatch } = useContext(HistoryContext);
     const addHistory = () => {
         dispatch({type: 'REMOVE_HISTORY', id: id});
