@@ -10,7 +10,6 @@ const AllList = () => {
     const { pages } = useParams();
     const { data: series, isLoading, error } = useFetch('https://hiperdex-scrapper.vercel.app/api/all/' + pages);
 
-
     return (
         <div className="all-list">
             {!error && !isLoading && series && series.error === undefined && (

@@ -1,6 +1,6 @@
 import useFetch from "../useFetch";
 import SeriesList from "../components/seriesList";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom";
 import SkeletonList from "../components/skeleton/skeletonList";
 
 const Home = () => {

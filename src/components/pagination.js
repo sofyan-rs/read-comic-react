@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom";
 
 const Pagination = ({ series, url }) => {
     const checkNull = series.last_page !== null && series.last_page !== undefined;

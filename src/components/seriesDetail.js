@@ -1,9 +1,17 @@
 import { DiscussionEmbed } from "disqus-react";
+import { useContext } from "react";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import ChapterList from "./chapterList";
 import NotFoundPages from "../components/notFoundPages";
+import { BookmarkContext } from "../contexts/bookmarkContext";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import swal from 'sweetalert';
+import { HistoryContext } from "../contexts/historyContext";
 
 const SeriesDetail = ({ series }) => {
+    const id = series.id;
     const title = series.page;
     const cover = series.poster;
     const alternative = series.other_name;
@@ -14,6 +22,38 @@ const SeriesDetail = ({ series }) => {
     const released = series.released;
     const genres = series.genres;
     const disqusShortname = "read-comic";
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var date_time = date+' '+time;
+
+    const { dispatch, bookmark } = useContext(BookmarkContext);
+    const addBookmark = () => {
+        dispatch({type: 'ADD_BOOKMARK', series: {
+            id, title, cover, date_time
+        }});
+        swal({
+            title: "Saved",
+            text: "Success added to Bookmark",
+            icon: "success",
+        })
+    }
+    const removeBookmark = () => {
+        dispatch({type: 'REMOVE_BOOKMARK', id: series.id});
+        swal({
+            title: "Removed",
+            text: "Success removed from Bookmark",
+            icon: "success",
+        });
+    }
+    let storedSeries = bookmark.find(bookmark => bookmark.id === id);
+    const bookmarkDisabled = storedSeries ? true : false;
+
+    const { history } = useContext(HistoryContext);
+    const filterHistory = history.filter(item => item.manga_title === title);
+    const shortHistory = filterHistory.sort(function(a,b){
+        return new Date(b.date) - new Date(a.date);
+    });
 
     return (
         <div className="series">
@@ -29,6 +69,15 @@ const SeriesDetail = ({ series }) => {
                                 <div className="series-info">
                                     <div className="series-title">
                                         <h3>{title}</h3>
+                                        <div className="favorite">
+                                            {!bookmarkDisabled && 
+                                                <button onClick={() => addBookmark()}><FontAwesomeIcon icon={faHeart} /> Add to Bookmark</button>
+                                            }
+                                            {bookmarkDisabled && 
+                                                <button className="remove" onClick={() => removeBookmark()}><FontAwesomeIcon icon={faXmark} /> Remove</button>
+                                            }
+                                        </div>
+                                        {shortHistory.length !== 0 && <span className="continue"><Link to={shortHistory[0].slug}>Continue Read</Link></span>}
                                     </div>
                                     <ul>
                                         <li><b>Alternative</b><span>{alternative}</span></li>
@@ -49,8 +98,8 @@ const SeriesDetail = ({ series }) => {
                                         )}
                                     </ul>
                                     <div className="series-genres">
-                                    {genres.map((genre) => (
-                                        <Link to={genre.genre_slug}>
+                                    {genres.map((genre, index) => (
+                                        <Link to={genre.genre_slug} key={index}>
                                             {genre.genre_title}
                                         </Link>
                                     ))}

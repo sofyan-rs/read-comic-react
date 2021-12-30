@@ -18,7 +18,7 @@ const Chapter = () => {
             )}
             {error && <div className="container"><div className="text-message">{error}</div></div>}
             {isLoading && <SkeletonChapter />}
-            {!error && !isLoading && chapter && <ChapterViewer chapter={chapter}></ChapterViewer>}
+            {!error && !isLoading && chapter && <ChapterViewer chapter={chapter} slug={`/chapter/` + series + `/` + ch + `/`}></ChapterViewer>}
         </div>
     );
 }

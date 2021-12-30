@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom";
 import notFound from './images/not-found.svg';
 import { Helmet } from "react-helmet";
 

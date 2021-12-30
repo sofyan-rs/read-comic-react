@@ -7,7 +7,6 @@ const useFetch = (url) => {
 
     useEffect(() => {
         const abortCont = new AbortController();
-
         setTimeout(() => {
             setIsLoading(true);
             fetch(url, { signal: abortCont.signal })
@@ -31,11 +30,8 @@ const useFetch = (url) => {
                 }
             })
         }, 100);
-
         return () => abortCont.abort();
-
     }, [url]);
-
     return { data, isLoading, error }
 }
  

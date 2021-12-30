@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom";
 import notFound from './images/not-found.svg';
 import { Helmet } from "react-helmet";
 
@@ -11,7 +11,7 @@ const NotFoundSeries = () => {
             </Helmet>
             <div className="text-message not-found">
                 <h2>Sorry</h2>
-                <p>This search result is not found</p>
+                <p>Search result is not found</p>
                 <div className="svg-img">
                     <img src={notFound} alt="Not Found" />
                 </div>
