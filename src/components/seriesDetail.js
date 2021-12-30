@@ -1,14 +1,14 @@
-import { DiscussionEmbed } from "disqus-react";
 import { useContext } from "react";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import ChapterList from "./chapterList";
-import NotFoundPages from "../components/notFoundPages";
-import { BookmarkContext } from "../contexts/bookmarkContext";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import swal from 'sweetalert';
+import { BookmarkContext } from "../contexts/bookmarkContext";
 import { HistoryContext } from "../contexts/historyContext";
+import { DiscussionEmbed } from "disqus-react";
+import ChapterList from "./chapterList";
+import NotFoundPages from "../components/notFoundPages";
+import swal from 'sweetalert';
 
 const SeriesDetail = ({ series }) => {
     const id = series.id;
