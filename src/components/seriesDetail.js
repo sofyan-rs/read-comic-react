@@ -26,7 +26,6 @@ const SeriesDetail = ({ series }) => {
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     var date_time = date+' '+time;
-
     const { dispatch, bookmark } = useContext(BookmarkContext);
     const addBookmark = () => {
         dispatch({type: 'ADD_BOOKMARK', series: {
@@ -48,7 +47,6 @@ const SeriesDetail = ({ series }) => {
     }
     let storedSeries = bookmark.find(bookmark => bookmark.id === id);
     const bookmarkDisabled = storedSeries ? true : false;
-
     const { history } = useContext(HistoryContext);
     const filterHistory = history.filter(item => item.manga_title === title);
     const shortHistory = filterHistory.sort(function(a,b){
