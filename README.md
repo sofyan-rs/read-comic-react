@@ -1,6 +1,6 @@
-# Simple Comic Reader using React.JS
+# Simple Comic Reader using React.js
 
-Manhwa/Manga Reader based on hiperdex scrapper api created with react.js
+Manhwa/Manga Reader based on hiperdex scrapper api created with React.js
 
 url : https://readcomic.org/
 
