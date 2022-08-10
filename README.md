@@ -1,6 +1,12 @@
-# Read Comic React
-Manhwa/Manga Reader based on hiperdex scrapper api made by react.js
+# Simple Comic Reader using React.JS
 
-# Installing
+Manhwa/Manga Reader based on hiperdex scrapper api created with react.js
+
+url : https://pokedex-kdevz.netlify.app/
+
+## Installing
     npm install
-    npm run start
+    npm start
+
+## Building Project
+    npm run build
